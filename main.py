@@ -59,14 +59,14 @@ class ScreenMelter(pygame.sprite.Sprite):
         self.columns = []
         cls = self.__class__
         column_rect = pygame.Rect(0, 0, 1, SCREENSIZE[1])
-        for x in range(SCREENSIZE[0]):
+        for _ in range(SCREENSIZE[0]):
             # Get a random offset for each column
             offset = -random.randint(0, cls.MAX_OFFSET) - cls.INITIAL_DELAY
             self.offsets.append(offset)
             # Get the column as a surface
             column = old_surf.subsurface(column_rect)
             column_rect.move_ip(1, 0)
-            self.columns.append(column)
+            self.columns.append(column.copy())
 
     def update(self):
         cls = self.__class__
